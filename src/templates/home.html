@@ -1,0 +1,12 @@
+{%extends 'base.html'%}
+
+{% block title %}
+{{block.super}} - {{page_title}}
+{% endblock title %}
+
+{% block content %}
+<p><i>{% include 'welcome-page.html' %}</i></p>
+Page visits: {{page_visit_count}}
+Total visits: {{total_visit_count}}
+
+{% endblock content %}
