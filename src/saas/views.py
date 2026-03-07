@@ -2,17 +2,21 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from visits.models import PageVisit
 
-def home_page_view(request, *args, **kwargs):
+
+def home_view(request, *args, **kwargs):
+    return about_view(request, *args, **kwargs)
+
+
+def about_view(request, *args, **kwargs):
     total_qs = PageVisit.objects.all()
     page_qs = PageVisit.objects.filter(path=request.path)
-    my_title="ProjectOne"
-    my_body="Hello World"
+    my_title = "ProjectOne"
+    my_body = "Hello World"
     my_context = {
         "page_title": my_title,
         "page_body": my_body,
         "page_visit_count": page_qs.count(),
         "total_visit_count": total_qs.count()
-
     }
 
     html_template = "home.html"
