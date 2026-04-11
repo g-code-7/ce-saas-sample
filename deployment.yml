@@ -17,5 +17,8 @@ spec:
           image: ghcr.io/g-code-7/ce-saas-sample
           ports:
             - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: saas-env
       imagePullSecrets:
         - name: ghcr-login-secret
