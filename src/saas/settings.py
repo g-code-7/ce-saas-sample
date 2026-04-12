@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'visits'
+    'visits',
+    'downloader'
 ]
 
 MIDDLEWARE = [
@@ -92,7 +93,7 @@ DATABASE_URL = config("DATABASE_URL", cast=str)
 
 if DATABASE_URL is not None:
     tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
- 
+
     DATABASES = {
         'default': dj_database_url.config(
             default=DATABASE_URL,
@@ -135,6 +136,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_BASE_DIR = BASE_DIR / "staticfiles"
+STATICFILES_VENDOR_DIR = STATICFILES_BASE_DIR / "vendors"
+
+STATICFILES_DIRS = [STATICFILES_BASE_DIR]
+
+STATIC_ROOT = BASE_DIR / "local-cdn"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
