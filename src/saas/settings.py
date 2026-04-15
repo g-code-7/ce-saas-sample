@@ -89,9 +89,9 @@ DATABASES = {
 }
 
 CONN_MAX_AGE = config("CONN_MAX_AGE", cast=int, default=30)
-DATABASE_URL = config("DATABASE_URL", cast=str)
+DATABASE_URL = config("DATABASE_URL", cast=str, default="dummy")
 
-if DATABASE_URL is not None:
+if DATABASE_URL is "dummy":
     tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
 
     DATABASES = {
