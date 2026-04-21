@@ -22,7 +22,6 @@ pipeline {
 
         stage('Build & Push Image with Buildah') {
             steps {
-                echo "Building image ${IMAGE} with Buildah and pushing to GHCR"
                 sh '''
                 # Login to GHCR
                 echo $GHCR_PAT | buildah login -u your-username --password-stdin ghcr.io
@@ -38,7 +37,6 @@ pipeline {
 
         stage('Deploy Pod to Kubernetes') {
             steps {
-                echo "Creating pod using image ${IMAGE}"
                 sh '''
                 kubectl apply -f deployment.yml
                 kubectl rollout restart deployment saas-deployment
